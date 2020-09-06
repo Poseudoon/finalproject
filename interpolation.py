@@ -16,28 +16,15 @@ def interpol(plotsize, potp, interpol):
     if interpol == "polynomial":
         x = potp[:, 0]
         y = potp[:, 1]
-        pot = interpolate.interp1d(x, y)
+        pot = interpolate.BarycentricInterpolator(x, y)
 
         ynew = pot(xnew)
 
     elif interpol == "linear":
+        x = potp[:, 0]
+        y = potp[:, 1]
+        pot = interpolate.interp1d(x, y)
 
-        ynew = []
-        n = 1
-
-        for i in range(0, len(xnew)):
-
-            if xnew[i] > potp[n, 0]:
-                n += 1
-                if potp[n-1, 0] == potp[n, 0]:
-                    n += 1
-
-            x = potp[n-1:n+1, 0]
-
-            y = potp[n-1:n+1, 1]
-
-            pot = interpolate.interp1d(x, y)
-
-            ynew.append(pot(xnew[i]))
+        ynew = pot(xnew)
 
     return xnew, ynew

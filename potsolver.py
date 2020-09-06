@@ -1,7 +1,6 @@
 import scipy as sc
 import numpy as np
 
-
 def evectorcalc(mass, plotsize, potx, poty):
 
     """
