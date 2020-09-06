@@ -1,9 +1,15 @@
-# -*- coding: utf-8 -*-
 from scipy import interpolate
 import numpy as np
 
 
 def interpol(plotsize, potp, interpol):
+
+    """
+    Interpolates the given potentialpoints while considering the given plotsize
+    and the given number of potentialpoints
+
+    Returns: the x- and y-values for the potential (xnew, ynew)
+    """
 
     xnew = np.linspace(plotsize[0], plotsize[1], num=plotsize[2])
 
@@ -33,3 +39,5 @@ def interpol(plotsize, potp, interpol):
             pot = interpolate.interp1d(x, y)
 
             ynew.append(pot(xnew[i]))
+
+    return xnew, ynew
