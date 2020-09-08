@@ -10,7 +10,7 @@ def main():
     basedata = np.loadtxt(os.path.join(path, "schrodinger.inp"))
     newpath = input("Please enter the path where to save the results: ")
 
-    xnew, ynew = interpolation.interpol(basedata[1, ], basedata[5:, ], basedata[3, ], newpath)
+    xnew, ynew = interpolation.interpolating(basedata[1, ], basedata[5:, ], basedata[3, ], newpath)
 
     visualizer.visualise(xnew, ynew, newpath)
 
