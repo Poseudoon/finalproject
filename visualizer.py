@@ -22,7 +22,7 @@ def visualise(xpot, ypot, path):
         expval = np.loadtxt(os.path.join(path, "expvalues.dat"))
 
     try:
-        factor = float(input("Please enter the factor of the wavefunctions for a better visualisation: "))
+        factor = float(input("Please a the factor of the wavefunctions for a better visualisation: "))
     except ValueError:
         factor = 1
 
@@ -54,8 +54,8 @@ def visualise(xpot, ypot, path):
         plt.title("Wavefunctions", fontsize=18)
         plt.xlim(xmin, xmax)
         plt.ylim(ymin, ymax)
-        plt.plot(xpot, ypot, linewidth=1.5, linestyle="-", color="black")
-        plt.plot([-10, 10], [energ, energ], linewidth=1, linestyle="-", color="grey")
+        plt.plot(xpot, ypot, linewidth=1.5, linestyle="-", color="black", label='potential')
+        plt.plot([-10, 10], [energ, energ], linewidth=1, linestyle="-", color="grey", label='energy-level')
         if i == 0:
             plt.scatter(expval[i, 0], energ, 100, marker='x', color='green', label='expected value')
         else:
