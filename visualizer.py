@@ -48,25 +48,38 @@ def visualise(xpot, ypot, path):
 
     for i in range(0, len(energies)):
         wfunc = wavefuncs[:, i+1]
-        energy = energies[i]
+        energ = energies[i]
 
         plt.subplot(1, 2, 1)
-        plt.title("Wavefunctions", fontsize=16)
+        plt.title("Wavefunctions", fontsize=18)
         plt.xlim(xmin, xmax)
         plt.ylim(ymin, ymax)
         plt.plot(xpot, ypot, linewidth=1.5, linestyle="-", color="black")
-        plt.plot([-10, 10], [energy, energy], linewidth=1, linestyle="-", color="grey")
-        plt.scatter(expval[i, 0], energies[i], 100, marker='x', color='green')
+        plt.plot([-10, 10], [energ, energ], linewidth=1, linestyle="-", color="grey")
+        if i == 0:
+            plt.scatter(expval[i, 0], energ, 100, marker='x', color='green', label='expected value')
+        else:
+            plt.scatter(expval[i, 0], energ, 100, marker='x', color='green')
         if i % 2:
             color = 'blue'
         else:
             color = 'red'
-        plt.plot(xpot, energy + factor * wfunc, linewidth=1, linestyle="-", color=color)
+        plt.plot(xpot, energ + factor * wfunc, linewidth=1, linestyle="-", color=color, label='wavefunction')
+        plt.legend(loc='lower right', fontsize='xx-small')
+        plt.xlabel("x [Bohr]", fontsize=11)
+        plt.ylabel("Energy [Hartree]", fontsize=11)
 
         plt.subplot(1, 2, 2)
-        plt.title("Unsharpness", fontsize=16)
+        plt.title("UUncertainty", fontsize=18)
         plt.xlim(0, 1.1)
         plt.ylim(ymin, ymax)
-        plt.plot([0, 1.1], [energy, energy], linewidth=1, linestyle="-", color="grey")
-        plt.scatter(expval[i, 1], energies[i], 100, marker='x', color='green')
-    plt.show()
+        plt.plot([0, 1.1], [energ, energ], linewidth=1, linestyle="-", color="grey", label='energy')
+        if i == 0:
+            plt.scatter(expval[i, 1], energ, 100, marker='x', color='green', label='uncertainty')
+        else:
+            plt.scatter(expval[i, 1], energ, 100, marker='x', color='green')
+        plt.legend(loc='upper left', fontsize='xx-small')
+        plt.xlabel("[Bohr]", fontsize=11)
+        plt.ylabel("Energy [Hartree]", fontsize=11)
+        plt.savefig(os.path.join(path, "wavefunctions.pdf"), format='pdf')
+        plt.show()
