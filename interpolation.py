@@ -19,15 +19,15 @@ def interpolating(plotsize, potp, interpol, path):
     xnew = np.linspace(plotsize[0], plotsize[1], num=plotsize[2])
 
     if interpol == "polynomial":
-        xx = potp[:, 0]
-        yy = potp[:, 1]
+        xx = potp[8::2]
+        yy = potp[9::2]
         pot = interpolate.BarycentricInterpolator(xx, yy)
 
         ynew = pot(xnew)
 
     elif interpol == "linear":
-        xx = potp[:, 0]
-        yy = potp[:, 1]
+        xx = potp[8::2]
+        yy = potp[9::2]
         pot = interpolate.interp1d(xx, yy)
 
         ynew = pot(xnew)

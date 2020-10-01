@@ -1,12 +1,9 @@
-<<<<<<< HEAD
-=======
 """
 Module for Visualising the results from potsolver
 """
 import os.path
 import numpy as np
 import matplotlib.pyplot as plt
->>>>>>> b0c22ee43ec291a26d8abe3e1155139125ad3db7
 
 
 def visualise(xpot, ypot, path):
