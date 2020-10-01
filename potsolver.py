@@ -62,7 +62,7 @@ def solve_pot(mass, plotsize, potx, poty, eigvaluesdata, newpath):
     for i in range(0, numo_eigenvals):
         expected_val_x = interval * np.sum(potx * np.transpose(eigvecs)[i] ** 2)
         expected_val_xx = interval * np.sum(potx ** 2 * np.transpose(eigvecs)[i] ** 2)
-        uncertainty = np.sqrt(expected_val_xx2 - expected_val_x ** )
+        uncertainty = np.sqrt(expected_val_xx - expected_val_x ** 2)
 
         expected_vals_x.append(expected_val_x)
         expected_vals_xx.append(expected_val_xx)
