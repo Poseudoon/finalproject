@@ -11,7 +11,7 @@ def main():
     """
         Managing the files of the programm.
     """
-    path = input("Please enter the to your schrodinger.inp-file: ")
+    path = input("Please enter the path to your schrodinger.inp-file: ")
     fp = open(os.path.join(path, "schrodinger.inp"), "r")
     basedata = fp.read().split()
     fp.close()
@@ -19,7 +19,7 @@ def main():
 
     for i in range(len(basedata)):
         try:
-            float(basedata[i])
+            basedata[i] = float(basedata[i])
         except ValueError:
             continue
 

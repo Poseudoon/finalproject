@@ -19,8 +19,8 @@ def solve_pot(basedata, newpath):
 
 # Reading potential.dat for potx and poty
     potential = np.loadtxt(os.path.join(newpath, "potential.dat"))
-    potx = potential[0, :]
-    poty = potential[1, :]
+    potx = potential[:, 0]
+    poty = potential[:, 1]
 
 # Define constants
     mass = basedata[0]
@@ -48,7 +48,8 @@ def solve_pot(basedata, newpath):
 
 # Calculate eigenvalues and eigenvectors
 
-    desev = (eigvaluesdata[0] - 1, eigvaluesdata[1] + 1)
+    desev = (int(eigvaluesdata[0]), int(eigvaluesdata[1]))
+
     main_diag = np.zeros(len(poty))
 
     for i in range(0, len(poty)):
@@ -56,7 +57,9 @@ def solve_pot(basedata, newpath):
 
     minor_diag = hamiltonmatrix[0, 1] * np.ones(len(poty) - 1)
 
-    eigvals, eigvecs = la.eigh_tridiagonal(main_diag, minor_diag, select="v", select_range=desev)
+    eigvals, eigvecs = la.eigh_tridiagonal(main_diag, minor_diag, select="i", select_range=desev)
+    print("eigvals: ", eigvals)
+    print("eigvecs: ", eigvecs)
 
     eigenvecs_withx = np.vstack((potx, np.transpose(eigvecs)))
 
