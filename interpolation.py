@@ -36,5 +36,3 @@ def interpolating(plotsize, potp, interpol, path):
     for i in range(1, len(xnew)):
         potnew = np.vstack((potnew, np.array([xnew[i], ynew[i]])))
     np.savetxt(os.path.join(path, "potenial.dat"), potnew)
-
-    return xnew, ynew

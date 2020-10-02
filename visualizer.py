@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def visualise(xpot, ypot, path):
+def visualise(path):
     """
     Reading in the results of potsolver, enters the size for the plot
     and plotting the results
@@ -15,11 +15,16 @@ def visualise(xpot, ypot, path):
         energies = np.loadtxt(os.path.join(path, "energies.dat"))
         wavefuncs = np.loadtxt(os.path.join(path, "wavefuncs.dat"))
         expval = np.loadtxt(os.path.join(path, "expvalues.dat"))
+        potential = np.loadtxt(os.path.join(path, "potential.dat"))
     except OSError:
         path = input("Please enter path where the potential, energies and wavefunctions exist: ")
         energies = np.loadtxt(os.path.join(path, "energies.dat"))
         wavefuncs = np.loadtxt(os.path.join(path, "wavefuncs.dat"))
         expval = np.loadtxt(os.path.join(path, "expvalues.dat"))
+        potential = np.loadtxt(os.path.join(path, "potential.dat"))
+
+    xpot = potential[0, :]
+    ypot = potential[1, :]
 
     try:
         factor = float(input("Please a the factor of the wavefunctions for a better visualisation: "))

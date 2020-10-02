@@ -7,7 +7,7 @@ import numpy as np
 import scipy.linalg as la
 
 
-def solve_pot(mass, plotsize, potx, poty, eigvaluesdata, newpath):
+def solve_pot(mass, plotsize, eigvaluesdata, newpath):
 
     """
     Calculates the number of desired eigenvectors, eigenvalues, expected values and x-uncertainty
@@ -15,6 +15,10 @@ def solve_pot(mass, plotsize, potx, poty, eigvaluesdata, newpath):
     Returns: y-values of desired eigenvectors, eigenvalues, expected values and x-uncertainty
     """
 
+# Reading potential.dat for potx and poty
+    potential = np.loadtxt(os.path.join(newpath, "potential.dat"))
+    potx = potential[0, :]
+    poty = potential[1, :]
 
 # Define constants
     interval = (plotsize[1] - plotsize[0])/plotsize[2]
@@ -70,5 +74,3 @@ def solve_pot(mass, plotsize, potx, poty, eigvaluesdata, newpath):
 
     uncertainty_and_expected = np.vstack((np.array(expected_vals_x), uncertainty_x))
     np.savetxt(os.path.join(newpath, "expvalues.dat"), np.transpose(uncertainty_and_expected))
-
-    return eigvals, eigvecs, uncertainty_and_expected

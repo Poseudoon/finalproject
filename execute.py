@@ -23,11 +23,11 @@ def main():
         except ValueError:
             continue
 
-    potx, poty = interpolation.interpolating(basedata[1:4], basedata[8:], basedata[6], newpath)
+    interpolation.interpolating(basedata[1:4], basedata[8:], basedata[6], newpath)
 
-    eigvals, eigvecs, uncertainty_and_expected = potsolver.solve_pot(basedata[0], basedata[1:4], potx, poty, basedata[4:6], newpath)
+    potsolver.solve_pot(basedata[0], basedata[1:4], basedata[4:6], newpath)
 
-    visualizer.visualise(potx, poty, newpath)
+    visualizer.visualise(newpath)
 
 
 if __name__ == "__main__":
