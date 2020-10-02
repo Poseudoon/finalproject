@@ -38,6 +38,13 @@ def interpolating(basedata, path):
 
         ynew = pot(xnew)
 
+    elif interpol == "cspline":
+        xx = potp[::2]
+        yy = potp[1::2]
+        pot = interpolate.interp1d(xx, yy)
+
+        ynew = pot(xnew)
+
     potnew = np.array([xnew[0], ynew[0]])
     for i in range(1, len(xnew)):
         potnew = np.vstack((potnew, np.array([xnew[i], ynew[i]])))
