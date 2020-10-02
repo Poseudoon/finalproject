@@ -7,7 +7,7 @@ from scipy import interpolate
 import numpy as np
 
 
-def interpolating(plotsize, potp, interpol, path):
+def interpolating(basedata, path):
 
     """
     Interpolates the given potentialpoints while considering the given plotsize
@@ -15,6 +15,10 @@ def interpolating(plotsize, potp, interpol, path):
 
     Returns: the x- and y-values for the potential (xnew, ynew)
     """
+
+    plotsize = basedata[1:4]
+    potp = basedata[8:]
+    interpol = basedata[6]
 
     xnew = np.linspace(plotsize[0], plotsize[1], num=plotsize[2])
 

@@ -23,9 +23,9 @@ def main():
         except ValueError:
             continue
 
-    interpolation.interpolating(basedata[1:4], basedata[8:], basedata[6], newpath)
+    interpolation.interpolating(basedata, newpath)
 
-    potsolver.solve_pot(basedata[0], basedata[1:4], basedata[4:6], newpath)
+    potsolver.solve_pot(basedata, newpath)
 
     visualizer.visualise(newpath)
 

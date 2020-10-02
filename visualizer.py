@@ -27,7 +27,7 @@ def visualise(path):
     ypot = potential[1, :]
 
     try:
-        factor = float(input("Please a the factor of the wavefunctions for a better visualisation: "))
+        factor = float(input("Please enter the scale factor: "))
     except ValueError:
         factor = 1
 
