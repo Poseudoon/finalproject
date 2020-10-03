@@ -23,8 +23,8 @@ def visualise(path):
         expval = np.loadtxt(os.path.join(path, "expvalues.dat"))
         potential = np.loadtxt(os.path.join(path, "potential.dat"))
 
-    xpot = potential[0, :]
-    ypot = potential[1, :]
+    xpot = potential[:, 0]
+    ypot = potential[:, 1]
 
     try:
         factor = float(input("Please enter the scale factor: "))
@@ -52,6 +52,9 @@ def visualise(path):
         ymax = energies[-1]+1
 
     for i in range(0, len(energies)):
+        uncertmin = expval[0, 1]+1
+        uncertmax = 0
+
         wfunc = wavefuncs[:, i+1]
         energ = energies[i]
 
@@ -75,10 +78,15 @@ def visualise(path):
         plt.ylabel("Energy [Hartree]", fontsize=11)
 
         plt.subplot(1, 2, 2)
-        plt.title("UUncertainty", fontsize=18)
-        plt.xlim(0, 1.1)
+        plt.title("Uncertainty", fontsize=18)
+        if uncertmin > expval[i, 1]:
+            uncertmin = 0.9*expval[i, 1]
+            plt.xlim(0.9*expval[i, 1], uncertmax)
+        if uncertmax < expval[i, 1]:
+            uncertmax = 1.1*expval[i, 1]
+            plt.xlim(uncertmin, 1.1*expval[i, 1])
         plt.ylim(ymin, ymax)
-        plt.plot([0, 1.1], [energ, energ], linewidth=1, linestyle="-", color="grey", label='energy')
+        plt.plot([0.9*expval[i, 1], 1.1*expval[i, 1]], [energ, energ], linewidth=1, linestyle="-", color="grey", label='energy')
         if i == 0:
             plt.scatter(expval[i, 1], energ, 100, marker='x', color='green', label='uncertainty')
         else:
@@ -87,4 +95,4 @@ def visualise(path):
         plt.xlabel("[Bohr]", fontsize=11)
         plt.ylabel("Energy [Hartree]", fontsize=11)
         plt.savefig(os.path.join(path, "wavefunctions.pdf"), format='pdf')
-        plt.show()
+    plt.show()

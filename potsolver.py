@@ -48,7 +48,7 @@ def solve_pot(basedata, newpath):
 
 # Calculate eigenvalues and eigenvectors
 
-    desev = (int(eigvaluesdata[0]), int(eigvaluesdata[1]))
+    desev = (int(eigvaluesdata[0])-1, int(eigvaluesdata[1])-1)
 
     main_diag = np.zeros(len(poty))
 
@@ -58,8 +58,6 @@ def solve_pot(basedata, newpath):
     minor_diag = hamiltonmatrix[0, 1] * np.ones(len(poty) - 1)
 
     eigvals, eigvecs = la.eigh_tridiagonal(main_diag, minor_diag, select="i", select_range=desev)
-    print("eigvals: ", eigvals)
-    print("eigvecs: ", eigvecs)
 
     eigenvecs_withx = np.vstack((potx, np.transpose(eigvecs)))
 
