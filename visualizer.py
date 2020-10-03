@@ -25,6 +25,8 @@ def visualise(path):
 
     xpot = potential[:, 0]
     ypot = potential[:, 1]
+    uncertmin = expval[0, 1]+1
+    uncertmax = 0
 
     try:
         factor = float(input("Please enter the scale factor: "))
@@ -52,8 +54,7 @@ def visualise(path):
         ymax = energies[-1]+1
 
     for i in range(0, len(energies)):
-        uncertmin = expval[0, 1]+1
-        uncertmax = 0
+
 
         wfunc = wavefuncs[:, i+1]
         energ = energies[i]
@@ -79,18 +80,18 @@ def visualise(path):
 
         plt.subplot(1, 2, 2)
         plt.title("Uncertainty", fontsize=18)
-<<<<<<< HEAD
-        plt.xlim(0, 1.1)
-=======
+
         if uncertmin > expval[i, 1]:
-            uncertmin = 0.9*expval[i, 1]
-            plt.xlim(0.9*expval[i, 1], uncertmax)
+            uncertmin = 0.9 * expval[i, 1]
+            print("min: ", uncertmin)
+            plt.xlim(uncertmin, uncertmax)
         if uncertmax < expval[i, 1]:
-            uncertmax = 1.1*expval[i, 1]
-            plt.xlim(uncertmin, 1.1*expval[i, 1])
->>>>>>> c5465715a40704c1f05c17103fd720ec2677ec03
+            uncertmax = 1.1 * expval[i, 1]
+            print("max: ", uncertmax)
+            plt.xlim(uncertmin, uncertmax)
+
         plt.ylim(ymin, ymax)
-        plt.plot([0.9*expval[i, 1], 1.1*expval[i, 1]], [energ, energ], linewidth=1, linestyle="-", color="grey", label='energy')
+        plt.plot([0, 10*expval[i, 1]], [energ, energ], linewidth=1, linestyle="-", color="grey", label='energy')
         if i == 0:
             plt.scatter(expval[i, 1], energ, 100, marker='x', color='green', label='uncertainty')
         else:

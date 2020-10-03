@@ -48,11 +48,7 @@ def solve_pot(basedata, newpath):
 
 # Calculate eigenvalues and eigenvectors
 
-<<<<<<< HEAD
     desev = (int(eigvaluesdata[0]) - 1, int(eigvaluesdata[1]) - 1)
-=======
-    desev = (int(eigvaluesdata[0])-1, int(eigvaluesdata[1])-1)
->>>>>>> c5465715a40704c1f05c17103fd720ec2677ec03
 
     main_diag = np.zeros(len(poty))
 
@@ -74,8 +70,6 @@ def solve_pot(basedata, newpath):
     expected_vals_xx = []
     uncertainty_x = []
 
-    print(np.transpose(eigvecs))
-
     for i in range(0, numo_eigenvals):
         norm = np.sqrt(interval * sum(np.transpose(eigvecs)[i] ** 2))
         norm_wfunc = np.transpose(eigvecs)[i] / norm
@@ -87,6 +81,5 @@ def solve_pot(basedata, newpath):
         expected_vals_xx.append(expected_val_xx)
         uncertainty_x.append(uncertainty)
 
-    print(uncertainty_x)
     uncertainty_and_expected = np.vstack((np.array(expected_vals_x), uncertainty_x))
     np.savetxt(os.path.join(newpath, "expvalues.dat"), np.transpose(uncertainty_and_expected))
