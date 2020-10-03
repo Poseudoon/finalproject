@@ -48,7 +48,11 @@ def solve_pot(basedata, newpath):
 
 # Calculate eigenvalues and eigenvectors
 
+<<<<<<< HEAD
     desev = (int(eigvaluesdata[0]) - 1, int(eigvaluesdata[1]) - 1)
+=======
+    desev = (int(eigvaluesdata[0])-1, int(eigvaluesdata[1])-1)
+>>>>>>> c5465715a40704c1f05c17103fd720ec2677ec03
 
     main_diag = np.zeros(len(poty))
 
