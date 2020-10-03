@@ -41,7 +41,7 @@ def interpolating(basedata, path):
     elif interpol == "cspline":
         xx = potp[::2]
         yy = potp[1::2]
-        pot = interpolate.CubicSpline(xx, yy)
+        pot = interpolate.CubicSpline(xx, yy, bc_type='natural')
 
         ynew = pot(xnew)
 

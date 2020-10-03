@@ -1,10 +1,29 @@
-# -*- coding: utf-8 -*-
+"""
+Tests if the potsolver module is working properly, using six
+different test potentials
+
+"""
 
 import numpy as np
-import
+import os.path
+import pytest
+import execute
+import interpolation
+import potsolver
+
+# Reading the testsolutions for comparison
 
 
-def test_1():
+# Testing interpolation
+
+
+def test_interpol(potpoint):
+    potx =
+    poty =
+
+
+
+def test_potsolver():
 
     xx_expected = np.array([0.666666666666667, 0.416666666666667, -0.5])
     xx_gauss = solvers.gaussian_eliminate(aa, bb)

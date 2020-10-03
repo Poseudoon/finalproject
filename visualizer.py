@@ -11,6 +11,7 @@ def visualise(path):
     Reading in the results of potsolver, enters the size for the plot
     and plotting the results
     """
+
     try:
         energies = np.loadtxt(os.path.join(path, "energies.dat"))
         wavefuncs = np.loadtxt(os.path.join(path, "wavefuncs.dat"))
@@ -64,7 +65,7 @@ def visualise(path):
         plt.xlim(xmin, xmax)
         plt.ylim(ymin, ymax)
         plt.plot(xpot, ypot, linewidth=1.5, linestyle="-", color="black", label='potential')
-        plt.plot([-10, 10], [energ, energ], linewidth=1, linestyle="-", color="grey", label='energy-level')
+        plt.plot([xmin, xmax], [energ, energ], linewidth=1, linestyle="-", color="grey", label='energy-level')
         if i == 0:
             plt.scatter(expval[i, 0], energ, 100, marker='x', color='green', label='expected value')
         else:
@@ -83,19 +84,20 @@ def visualise(path):
 
         if uncertmin > expval[i, 1]:
             uncertmin = 0.9 * expval[i, 1]
-            print("min: ", uncertmin)
             plt.xlim(uncertmin, uncertmax)
+
         if uncertmax < expval[i, 1]:
             uncertmax = 1.1 * expval[i, 1]
-            print("max: ", uncertmax)
             plt.xlim(uncertmin, uncertmax)
 
         plt.ylim(ymin, ymax)
         plt.plot([0, 10*expval[i, 1]], [energ, energ], linewidth=1, linestyle="-", color="grey", label='energy')
+
         if i == 0:
             plt.scatter(expval[i, 1], energ, 100, marker='x', color='green', label='uncertainty')
         else:
             plt.scatter(expval[i, 1], energ, 100, marker='x', color='green')
+
         plt.legend(loc='upper left', fontsize='xx-small')
         plt.xlabel("[Bohr]", fontsize=11)
         plt.ylabel("Energy [Hartree]", fontsize=11)
