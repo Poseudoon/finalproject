@@ -23,8 +23,8 @@ def visualise(path):
         expval = np.loadtxt(os.path.join(path, "expvalues.dat"))
         potential = np.loadtxt(os.path.join(path, "potential.dat"))
 
-    xpot = potential[0, :]
-    ypot = potential[1, :]
+    xpot = potential[:, 0]
+    ypot = potential[:, 1]
 
     try:
         factor = float(input("Please enter the scale factor: "))
@@ -75,7 +75,7 @@ def visualise(path):
         plt.ylabel("Energy [Hartree]", fontsize=11)
 
         plt.subplot(1, 2, 2)
-        plt.title("UUncertainty", fontsize=18)
+        plt.title("Uncertainty", fontsize=18)
         plt.xlim(0, 1.1)
         plt.ylim(ymin, ymax)
         plt.plot([0, 1.1], [energ, energ], linewidth=1, linestyle="-", color="grey", label='energy')
@@ -87,4 +87,4 @@ def visualise(path):
         plt.xlabel("[Bohr]", fontsize=11)
         plt.ylabel("Energy [Hartree]", fontsize=11)
         plt.savefig(os.path.join(path, "wavefunctions.pdf"), format='pdf')
-        plt.show()
+    plt.show()

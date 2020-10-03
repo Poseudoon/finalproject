@@ -48,7 +48,7 @@ def solve_pot(basedata, newpath):
 
 # Calculate eigenvalues and eigenvectors
 
-    desev = (int(eigvaluesdata[0]), int(eigvaluesdata[1]))
+    desev = (int(eigvaluesdata[0]) - 1, int(eigvaluesdata[1]) - 1)
 
     main_diag = np.zeros(len(poty))
 
@@ -58,8 +58,6 @@ def solve_pot(basedata, newpath):
     minor_diag = hamiltonmatrix[0, 1] * np.ones(len(poty) - 1)
 
     eigvals, eigvecs = la.eigh_tridiagonal(main_diag, minor_diag, select="i", select_range=desev)
-    print("eigvals: ", eigvals)
-    print("eigvecs: ", eigvecs)
 
     eigenvecs_withx = np.vstack((potx, np.transpose(eigvecs)))
 
@@ -72,14 +70,19 @@ def solve_pot(basedata, newpath):
     expected_vals_xx = []
     uncertainty_x = []
 
+    print(np.transpose(eigvecs))
+
     for i in range(0, numo_eigenvals):
-        expected_val_x = interval * np.sum(potx * np.transpose(eigvecs)[i] ** 2)
-        expected_val_xx = interval * np.sum(potx ** 2 * np.transpose(eigvecs)[i] ** 2)
+        norm = np.sqrt(interval * sum(np.transpose(eigvecs)[i] ** 2))
+        norm_wfunc = np.transpose(eigvecs)[i] / norm
+        expected_val_x = interval * np.sum(potx * norm_wfunc ** 2)
+        expected_val_xx = interval * np.sum(potx ** 2 * norm_wfunc ** 2)
         uncertainty = np.sqrt(expected_val_xx - expected_val_x ** 2)
 
         expected_vals_x.append(expected_val_x)
         expected_vals_xx.append(expected_val_xx)
         uncertainty_x.append(uncertainty)
 
+    print(uncertainty_x)
     uncertainty_and_expected = np.vstack((np.array(expected_vals_x), uncertainty_x))
     np.savetxt(os.path.join(newpath, "expvalues.dat"), np.transpose(uncertainty_and_expected))
