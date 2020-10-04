@@ -3,9 +3,9 @@ Executing the programm.
 """
 import os.path
 import argparse
-import interpolation
-import visualizer
-import potsolver
+import solver.interpolation
+import solver.visualizer
+import solver.potsolver
 
 
 def main():
@@ -43,11 +43,11 @@ def main():
             continue
 
 # generating results
-    interpolation.interpolating(basedata, newpath)
+    solver.interpolation._interpolating(basedata, newpath)
 
-    potsolver._solve_pot(basedata, newpath)
+    solver.potsolver._solve_pot(basedata, newpath)
 
-    visualizer._visualise(newpath)
+    solver.visualizer._visualise(newpath)
 
 
 if __name__ == "__main__":

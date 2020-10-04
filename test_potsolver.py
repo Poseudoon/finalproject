@@ -1,16 +1,17 @@
 """
 Tests if the potsolver and interpolation module is working properly,
-using six different test potentials given in the ./testing folder
+using six different test potentials given in the ../testing folder
 """
 
 import os.path
 import numpy as np
 import pytest
-import interpolation
-import potsolver
+import solver.interpolation
+import solver.potsolver
 
 
-pot_names = ["asymmetric", "double_well_lin", "double_well_spl", "fin_well", "harmonic", "inf_well"]
+pot_names = ["asymmetric", "double_well_lin", "double_well_spl",
+             "fin_well", "harmonic", "inf_well"]
 
 # Testing the interpoloation module
 
@@ -21,7 +22,8 @@ def test_interpolation(pot_name):
     Tests the interpolation module with the six test potentials
 
     Args:
-        pot_name (string): is the name of the potential that is being currently tested
+        pot_name (string): is the name of the potential that is being
+        currently tested
     """
 
     path = "./testing/{0}".format(pot_name)
@@ -36,7 +38,7 @@ def test_interpolation(pot_name):
         except ValueError:
             continue
 
-    interpolation._interpolating(basedata, newpath)
+    solver.interpolation._interpolating(basedata, newpath)
     test_pot = np.loadtxt(os.path.join(newpath, "potential.dat"))
     original_pot = np.loadtxt(os.path.join(path, "potential.dat"))
 
@@ -51,7 +53,8 @@ def test_potsolver(pot_name):
     Tests the potsolver module with the six test potentials
 
     Args:
-        pot_name (string): is the name of the potential that is being currently tested
+        pot_name (string): is the name of the potential that is
+        being currently tested
     """
 
     path = "./testing/{0}".format(pot_name)
@@ -66,7 +69,7 @@ def test_potsolver(pot_name):
         except ValueError:
             continue
 
-    potsolver._solve_pot(basedata, newpath)
+    solver.potsolver._solve_pot(basedata, newpath)
     test_wavefuncs = np.loadtxt(os.path.join(newpath, "wavefuncs.dat"))
     original_wavefuncs = np.loadtxt(os.path.join(path, "wavefuncs.dat"))
     test_expvalues = np.loadtxt(os.path.join(newpath, "expvalues.dat"))
