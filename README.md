@@ -18,16 +18,16 @@
   Choose the directory where you save the inputdata (schrodinger.inp(.dat)) with the 
   following format:
 
-  # mass
-  # xMin xMax nPoint
-  # first and last eigenvalues to calculate
-  # interpolarion type
-  # nr. of interpolation points
-  # x1 y1
-  # x2 y2
-  # .  .
-  # .  .
-  # xn yn
+  mass
+  xMin xMax nPoint
+  first and last eigenvalues to calculate
+  interpolarion type
+  nr. of interpolation points
+  x1 y1
+  x2 y2
+  .  .
+  .  .
+  xn yn
 
   The mass 1 is considered to be equal to the mass of an electron. 
   The length unit is Bor (1 unit = 0,529177 * 10 ** -10 m)
@@ -59,35 +59,35 @@
 
    potential.dat
    
-   # x1 V(x1)
-   # x2 V(x2)
-   # .  .
-   # .  .
-   # xn V(xn)
+   x1 V(x1)
+   x2 V(x2)
+   .  .
+   .  .
+   xn V(xn)
 
    energies.dat
 
-   # Ea
-   # Ea + 1
-   # .
-   # . 
-   # Eb
+   Ea
+   Ea + 1
+   .
+   . 
+   Eb
 
    wavefuncs.dat
 
-   # x1 wfa(x1) wf(a+1)(x1) ... wfb(x1)
-   # x2 wfa(x2) wf(a+1)(x2) ... wfb(x2)
-   # .
-   # .
-   # xn wfa(xn) wf(a+1)(xn) ... wfb(xn)
+   x1 wfa(x1) wf(a+1)(x1) ... wfb(x1)
+   x2 wfa(x2) wf(a+1)(x2) ... wfb(x2)
+   .
+   .
+   xn wfa(xn) wf(a+1)(xn) ... wfb(xn)
 
    expvalues.dat
 
-   # expval(Ea)     uncertainty(Ea)
-   # expval(E(a+1)) uncertainty (E(a+1))
-   # . 
-   # . 
-   # expval(Eb)     uncertainty(Eb)
+   expval(Ea)     uncertainty(Ea)
+   expval(E(a+1)) uncertainty (E(a+1))
+   . 
+   . 
+   expval(Eb)     uncertainty(Eb)
 
 ## Testing
    To test, if the program is working properly you can run python3 -m pyteset. 
