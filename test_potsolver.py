@@ -74,6 +74,8 @@ def test_potsolver(pot_name):
     test_energies = np.loadtxt(os.path.join(newpath, "energies.dat"))
     original_energies = np.loadtxt(os.path.join(path, "energies.dat"))
 
-    assert np.allclose(original_wavefuncs, test_wavefuncs, rtol=1e-10, atol=1e10)
-    assert np.allclose(original_expvalues, test_expvalues, rtol=1e-10, atol=1e10)
+    assert np.allclose(original_wavefuncs, test_wavefuncs,
+                       rtol=1e-10, atol=1e10)
+    assert np.allclose(original_expvalues, test_expvalues,
+                       rtol=1e-10, atol=1e10)
     assert np.allclose(original_energies, test_energies, rtol=1e-10, atol=1e10)
