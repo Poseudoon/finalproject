@@ -32,7 +32,7 @@
   The mass 1 is considered to be equal to the mass of an electron. 
   The length unit is Bor (1 unit = 0,529177 * 10 ** -10 m)  
   The energy unit is hartree (1 unit = 27,211385 eV)  
-  Wich eingevalues to choose should be self-explanatory, it should be interger numbers  
+  Wich eingevalues to choose should be self-explanatory, they should be interger numbers  
   As interpolation type you can choose 'linear', 'polynomial' or 'cspline'  
   (cspline meaning the natural cubic spline interpolation)  
   nr. of interp. points is the number of basepoints that will be passed in the  
