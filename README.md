@@ -21,7 +21,7 @@
   mass  
   xMin xMax nPoint  
   first and last eigenvalues to calculate  
-  interpolarion type  
+  interpolation type  
   nr. of interpolation points  
   x1 y1  
   x2 y2  
