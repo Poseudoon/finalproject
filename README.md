@@ -49,8 +49,8 @@
    The scale factor scales the visualized wavefunction and  
    the x- and y-range determines the visualized x- and y-intervals.  
   
-   After execution the program will show 2 plots with the interplated potential.  
-   One shows the nr. of desired wavefunctions, raised by their energy, and the  
+   After execution the program will show 2 plots with the interpolated potential.  
+   One shows the number of desired wavefunctions, raised by their energy, and the  
    x-expectancy.  
    The second plot shows the x-uncertainty for the respective energies  
    In the passed outputpath the plots will be saved as .pdf. The potential,  
@@ -90,5 +90,9 @@
    expval(Eb)     uncertainty(Eb)  
   
 ## Testing
-   To test, if the program is working properly you can run python3 -m pyteset.  
-   The Programm will then be tested with six potentials.
+   To test, if the program is working properly you can run python3 -m pytest.  
+   The Programm will then be tested with six the potentials:
+   - asymmetric potential
+   - double potential well (linear and cubic spline interpolated)
+   - infinite and finite potential well
+   - harmonic oscillator
