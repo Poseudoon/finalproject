@@ -20,7 +20,7 @@
   
   mass  
   xMin xMax nPoint  
-  first and last eigenvalues to calculate  
+  a b (first and last eigenvalues to calculate)  
   interpolation type  
   nr. of interpolation points  
   x1 y1  
