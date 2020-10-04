@@ -16,6 +16,7 @@ def interpolating(basedata, path):
     Returns: the x- and y-values for the potential (xnew, ynew)
     """
 
+# defining constants
     plotsize1 = int(basedata[1])
     plotsize2 = int(basedata[2])
     plotsize3 = int(basedata[3])
@@ -24,6 +25,7 @@ def interpolating(basedata, path):
 
     xnew = np.linspace(plotsize1, plotsize2, num=plotsize3)
 
+# interpolation for each type
     if interpol == "polynomial":
         xx = potp[::2]
         yy = potp[1::2]
@@ -45,6 +47,7 @@ def interpolating(basedata, path):
 
         ynew = pot(xnew)
 
+# saving results in files
     potnew = np.array([xnew[0], ynew[0]])
     for i in range(1, len(xnew)):
         potnew = np.vstack((potnew, np.array([xnew[i], ynew[i]])))

@@ -57,12 +57,14 @@ def solve_pot(basedata, newpath):
 
     minor_diag = hamiltonmatrix[0, 1] * np.ones(len(poty) - 1)
 
-    eigvals, eigvecs = la.eigh_tridiagonal(main_diag, minor_diag, select="i", select_range=desev)
+    eigvals, eigvecs = la.eigh_tridiagonal(main_diag, minor_diag,
+                                           select="i", select_range=desev)
 
     eigenvecs_withx = np.vstack((potx, np.transpose(eigvecs)))
 
     np.savetxt(os.path.join(newpath, "energies.dat"), eigvals)
-    np.savetxt(os.path.join(newpath, "wavefuncs.dat"), np.transpose(eigenvecs_withx))
+    np.savetxt(os.path.join(newpath, "wavefuncs.dat"),
+               np.transpose(eigenvecs_withx))
 
 # Calculate expected values
     numo_eigenvals = len(eigvals)
@@ -81,5 +83,7 @@ def solve_pot(basedata, newpath):
         expected_vals_xx.append(expected_val_xx)
         uncertainty_x.append(uncertainty)
 
-    uncertainty_and_expected = np.vstack((np.array(expected_vals_x), uncertainty_x))
-    np.savetxt(os.path.join(newpath, "expvalues.dat"), np.transpose(uncertainty_and_expected))
+    uncertainty_and_expected = np.vstack((np.array(expected_vals_x),
+                                          uncertainty_x))
+    np.savetxt(os.path.join(newpath, "expvalues.dat"),
+               np.transpose(uncertainty_and_expected))
