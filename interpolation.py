@@ -7,13 +7,14 @@ from scipy import interpolate
 import numpy as np
 
 
-def interpolating(basedata, path):
-
+def _interpolating(basedata, path):
     """
     Interpolates the given potentialpoints while considering the given plotsize
     and the given number of potentialpoints
 
-    Returns: the x- and y-values for the potential (xnew, ynew)
+    args:
+        basedata (array): contains the values to interpolate the potential
+        path (string): is the directory where the potential.dat will be saved
     """
 
     plotsize1 = int(basedata[1])

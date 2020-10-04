@@ -1,7 +1,6 @@
 """
 Tests if the potsolver and interpolation module is working properly,
-using six different test potentials
-
+using six different test potentials given in the ./testing folder
 """
 
 import os.path
@@ -20,7 +19,9 @@ pot_names = ["asymmetric", "double_well_lin", "double_well_spl", "fin_well", "ha
 def test_interpolation(pot_name):
     """
     Tests the interpolation module with the six test potentials
-    given in the ./testing folder
+
+    Args:
+        pot_name (string): is the name of the potential that is being currently tested
     """
 
     path = "./testing/{0}".format(pot_name)
@@ -35,20 +36,22 @@ def test_interpolation(pot_name):
         except ValueError:
             continue
 
-    interpolation.interpolating(basedata, newpath)
+    interpolation._interpolating(basedata, newpath)
     test_pot = np.loadtxt(os.path.join(newpath, "potential.dat"))
     original_pot = np.loadtxt(os.path.join(path, "potential.dat"))
 
     assert np.allclose(original_pot, test_pot, rtol=1e-10, atol=1e10)
 
-# Testing the interpoloation module
+# Testing the potsolver module
 
 
 @pytest.mark.parametrize("pot_name", pot_names)
 def test_potsolver(pot_name):
     """
     Tests the potsolver module with the six test potentials
-    given in the ./testing folder
+
+    Args:
+        pot_name (string): is the name of the potential that is being currently tested
     """
 
     path = "./testing/{0}".format(pot_name)
@@ -63,7 +66,7 @@ def test_potsolver(pot_name):
         except ValueError:
             continue
 
-    potsolver.solve_pot(basedata, newpath)
+    potsolver._solve_pot(basedata, newpath)
     test_wavefuncs = np.loadtxt(os.path.join(newpath, "wavefuncs.dat"))
     original_wavefuncs = np.loadtxt(os.path.join(path, "wavefuncs.dat"))
     test_expvalues = np.loadtxt(os.path.join(newpath, "expvalues.dat"))

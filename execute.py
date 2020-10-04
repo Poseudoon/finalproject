@@ -1,5 +1,5 @@
 """
-    Executing the programm.
+Executing the programm.
 """
 import os.path
 import interpolation
@@ -9,7 +9,10 @@ import potsolver
 
 def main():
     """
-        Managing the files of the programm.
+    Determines the inputpath where the schrodinger.inp is located,
+    as well as where the ouputdata will be saved.
+
+    Runs the modules to solve the given Problem.
     """
     path = input("Please enter the path to your schrodinger.inp-file: ")
     fp = open(os.path.join(path, "schrodinger.inp"), "r")
@@ -23,11 +26,11 @@ def main():
         except ValueError:
             continue
 
-    interpolation.interpolating(basedata, newpath)
+    interpolation._interpolating(basedata, newpath)
 
-    potsolver.solve_pot(basedata, newpath)
+    potsolver._solve_pot(basedata, newpath)
 
-    visualizer.visualise(newpath)
+    visualizer._visualise(newpath)
 
 
 if __name__ == "__main__":

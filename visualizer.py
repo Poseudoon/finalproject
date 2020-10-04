@@ -6,10 +6,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def visualise(path):
+def _visualise(path):
     """
-    Reading in the results of potsolver, enters the size for the plot
-    and plotting the results
+    Reading in the results of potsolver, reads the size for the plot
+    and plotting the results. Shows plot and saves it as .pdf in the
+    outputpath.
+
+    Args:
+        path (string): is the path to the directory, where potsolver saves
+                       the data needed for visualization. The .pdf will also be
+                       saved there.
     """
 
     try:

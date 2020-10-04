@@ -7,14 +7,19 @@ import numpy as np
 import scipy.linalg as la
 
 
-def solve_pot(basedata, newpath):
+def _solve_pot(basedata, newpath):
 
     """
     Calculates the number of desired eigenvectors, eigenvalues,
     expected values and x-uncertainty
 
-    Returns: y-values of desired eigenvectors, eigenvalues,
-    expected values and x-uncertainty
+    Args:
+        basedata (array): contains all necessary values to calculate the
+                          eigenvalues eigenvectors, x-uncertainty and the
+                          x-expectation
+
+        newpath (string): is the path where the calculated values will will be
+                          saved (energies.dat, wavefuncs.dat and expvalues.dat)
     """
 
 # Reading potential.dat for potx and poty
@@ -62,7 +67,8 @@ def solve_pot(basedata, newpath):
     eigenvecs_withx = np.vstack((potx, np.transpose(eigvecs)))
 
     np.savetxt(os.path.join(newpath, "energies.dat"), eigvals)
-    np.savetxt(os.path.join(newpath, "wavefuncs.dat"), np.transpose(eigenvecs_withx))
+    np.savetxt(os.path.join(newpath, "wavefuncs.dat"),
+               np.transpose(eigenvecs_withx))
 
 # Calculate expected values
     numo_eigenvals = len(eigvals)
