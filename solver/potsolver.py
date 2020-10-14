@@ -40,16 +40,13 @@ def _solve_pot(basedata, newpath):
 
     for col in range(0, len(poty)):
 
-        for row in range(0, len(poty)):
+        hamiltonmatrix[col, col] = hamconstant + poty[col]
 
-            if col == row:
-                hamiltonmatrix[row, col] = hamconstant + poty[row]
+        if col == len(poty) - 1:
+            break
 
-                if col == len(poty) - 1:
-                    break
-
-                hamiltonmatrix[row + 1, col] = -1/2*hamconstant
-                hamiltonmatrix[row, col + 1] = -1/2*hamconstant
+        hamiltonmatrix[col + 1, col] = -1/2*hamconstant
+        hamiltonmatrix[col, col + 1] = -1/2*hamconstant
 
 # Calculate eigenvalues and eigenvectors
 
